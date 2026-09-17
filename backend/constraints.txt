@@ -1,5 +1,8 @@
-# Force opencv-python-headless on headless servers (no GUI libs like libxcb).
-# ultralytics depends on opencv-python (non-headless) which pulls in GUI
-# libraries unavailable on Railway/Render.  The constraint ensures that if
-# opencv-python-headless is ever resolved, a compatible version is used.
-opencv-python-headless
+# Headless OpenCV only — no GUI/X11 dependencies.
+#
+# ultralytics hard-depends on opencv-python (non-headless), which links against
+# GUI libs such as libxcb.so.1 that are absent from the server image. That
+# package is uninstalled and replaced with the pinned headless build during
+# deploy (see render.yaml buildCommand). Never install opencv-python and
+# opencv-python-headless side by side: they share the cv2 binaries.
+opencv-python-headless==4.13.0.92
