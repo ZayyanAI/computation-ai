@@ -67,9 +67,8 @@ Arsitektur hybrid: **frontend di Vercel**, **backend FastAPI di Railway**.
   menarik `opencv-python` (non-headless) yang butuh `libxcb.so.1`; package itu
   dibuang saat build agar `import cv2` tidak crash di image tanpa X11.
 - Health check: `GET /api/health` → `{"status":"ok"}`.
-- URL publik: generate di Railway → service → **Settings → Networking → Generate
-  Domain** (format `https://<service>.up.railway.app`).
-  - URL backend final: `TODO: isi URL Railway final di sini`
+- URL backend final: **https://computation-ai-production.up.railway.app**
+  (Railway → service → **Settings → Networking → Generate Domain**).
 
 ### Frontend — Vercel
 - Root directory: `frontend` (Vite + React).
