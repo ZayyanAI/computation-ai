@@ -1,0 +1,5 @@
+# Force opencv-python-headless on headless servers (no GUI libs like libxcb).
+# ultralytics depends on opencv-python (non-headless) which pulls in GUI
+# libraries unavailable on Railway/Render.  The constraint ensures that if
+# opencv-python-headless is ever resolved, a compatible version is used.
+opencv-python-headless
