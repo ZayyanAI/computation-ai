@@ -1,0 +1,15 @@
+.vercel
+
+# Environment & secret
+.env*
+!.env.example
+
+# Dependensi & artefak build (tidak perlu di-commit)
+node_modules/
+frontend/node_modules/
+frontend/dist/
+backend/venv/
+**/__pycache__/
+**/*.py[cod]
+*~
+**/*.timestamp-*.mjs

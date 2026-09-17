@@ -1,0 +1,14 @@
+# Backend tidak di-deploy ke Vercel (terlalu berat: torch/opencv/ultralytics)
+# Backend berjalan di Render/Railway; frontend memanggil lewat VITE_API_BASE_URL.
+backend/
+
+# Artefak lokal / dependency
+node_modules/
+frontend/node_modules/
+frontend/dist/
+**/__pycache__/
+**/*.pyc
+
+# Git & log
+.git/
+*.log
