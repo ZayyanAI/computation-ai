@@ -62,7 +62,7 @@ Arsitektur hybrid: **frontend di Vercel**, **backend FastAPI di Railway**.
 
 ### Backend — Railway
 - Project: **Compute** — service backend dengan root directory `backend`.
-- Konfigurasi build/start: [`railway.json`](railway.json).
+- Konfigurasi build/start: [`backend/railway.json`](backend/railway.json).
 - Build memaksa **hanya** `opencv-python-headless` yang terpasang. `ultralytics`
   menarik `opencv-python` (non-headless) yang butuh `libxcb.so.1`; package itu
   dibuang saat build agar `import cv2` tidak crash di image tanpa X11.
