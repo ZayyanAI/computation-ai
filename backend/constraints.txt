@@ -3,6 +3,6 @@
 # ultralytics hard-depends on opencv-python (non-headless), which links against
 # GUI libs such as libxcb.so.1 that are absent from the server image. That
 # package is uninstalled and replaced with the pinned headless build during
-# deploy (see render.yaml buildCommand). Never install opencv-python and
+# deploy (see railway.json buildCommand). Never install opencv-python and
 # opencv-python-headless side by side: they share the cv2 binaries.
 opencv-python-headless==4.13.0.92

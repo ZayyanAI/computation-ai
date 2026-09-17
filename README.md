@@ -56,6 +56,36 @@ Buka browser Anda di `http://127.0.0.1:5173`.
 
 ---
 
+## 🚢 Deployment (Railway + Vercel)
+
+Arsitektur hybrid: **frontend di Vercel**, **backend FastAPI di Railway**.
+
+### Backend — Railway
+- Project: **Compute** — service backend dengan root directory `backend`.
+- Konfigurasi build/start: [`railway.json`](railway.json).
+- Build memaksa **hanya** `opencv-python-headless` yang terpasang. `ultralytics`
+  menarik `opencv-python` (non-headless) yang butuh `libxcb.so.1`; package itu
+  dibuang saat build agar `import cv2` tidak crash di image tanpa X11.
+- Health check: `GET /api/health` → `{"status":"ok"}`.
+- URL publik: generate di Railway → service → **Settings → Networking → Generate
+  Domain** (format `https://<service>.up.railway.app`).
+  - URL backend final: `TODO: isi URL Railway final di sini`
+
+### Frontend — Vercel
+- Root directory: `frontend` (Vite + React).
+- Env var wajib: `VITE_API_BASE_URL` = URL backend Railway di atas, **tanpa**
+  trailing slash. Dibaca oleh [`frontend/src/apiConfig.js`](frontend/src/apiConfig.js).
+- Set di Vercel → Project → **Settings → Environment Variables**, lalu **Redeploy**
+  (perubahan env var butuh redeploy, tidak langsung live).
+- Jika `VITE_API_BASE_URL` kosong, request jadi same-origin — hanya benar untuk
+  dev lokal (proxy Vite di `frontend/vite.config.js`).
+
+> Migrasi: backend sebelumnya pernah direncanakan di Render
+> (`countmeasure-backend.onrender.com`). Blueprint Render sudah dihapus dari repo.
+> Jangan arahkan `VITE_API_BASE_URL` ke domain `*.onrender.com`.
+
+---
+
 ## 📐 Rumus Matematis yang Digunakan
 
 ### 1. Rasio Skala Kalibrasi (Piksel ke Metrik)
