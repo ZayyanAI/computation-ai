@@ -24,9 +24,15 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    # Apex compute-ai.vercel.app membalas 451 DEPLOYMENT_DISABLED, jadi alias
-    # produksi yang benar-benar melayani aplikasi tetap computation-ai.vercel.app.
+    # Daftar origin eksplisit (tanpa wildcard "*" karena allow_credentials=True).
+    # - compute-ai.vercel.app: apex project, saat ini membalas 451
+    #   DEPLOYMENT_DISABLED. tetap didaftarkan agar siap saat deployment
+    #   apex diaktifkan kembali.
+    # - computation-ai.vercel.app: alias produksi yang aktif (HTTP 307).
+    # - compute-ai-41zayyan-3864.vercel.app: alias team project (HTTP 302).
+    # - localhost:5173: dev lokal Vite.
     allow_origins=[
+        "https://compute-ai.vercel.app",
         "https://computation-ai.vercel.app",
         "https://compute-ai-41zayyan-3864.vercel.app",
         "http://localhost:5173",
